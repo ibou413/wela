@@ -1,0 +1,136 @@
+{% load static %}
+<footer class="bg-gray-900 text-gray-300">
+      <!-- Main Footer -->
+      <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div>
+            <a href="{% url 'shop:home' %}" class="flex items-center gap-2 mb-4">
+              <img src="{% static 'Logo.png' %}" alt="AgroFresh Logo" class="h-32">
+            </a>
+            <p class="text-sm mb-4">
+              Votre marketplace de confiance pour des produits agro-alimentaires bio et locaux.
+            </p>
+            <div class="flex gap-3">
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
+                <i data-lucide="facebook" class="h-5 w-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
+                <i data-lucide="instagram" class="h-5 w-5"></i>
+              </a>
+              <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-green-600 transition-colors">
+                <i data-lucide="twitter" class="h-5 w-5"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="text-white mb-4">Liens Rapides</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="{% url 'about' %}" class="hover:text-green-400 transition-colors">
+                  À propos de nous
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'shop:producers' %}" class="hover:text-green-400 transition-colors">
+                  Nos producteurs
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition-colors">
+                  Blog & Recettes
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition-colors">
+                  Devenir producteur
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-green-400 transition-colors">
+                  Carrières
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Customer Service -->
+          <div>
+            <h4 class="text-white mb-4">Service Client</h4>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="{% url 'contact' %}" class="hover:text-green-400 transition-colors">
+                  Contact
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'faq' %}" class="hover:text-green-400 transition-colors">
+                  Livraison
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'faq' %}" class="hover:text-green-400 transition-colors">
+                  Retours & Remboursements
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'faq' %}" class="hover:text-green-400 transition-colors">
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'terms' %}" class="hover:text-green-400 transition-colors">
+                  Conditions d'utilisation
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="text-white mb-4">Contact</h4>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-start gap-3">
+                <i data-lucide="map-pin" class="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                <span>123 Avenue Cheikh Anta Diop, Dakar, Sénégal</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="phone" class="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                <span>+221 33 800 00 00</span>
+              </li>
+              <li class="flex items-start gap-3">
+                <i data-lucide="mail" class="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5"></i>
+                <span>contact@agrofresh.sn</span>
+              </li>
+            </ul>
+            <div class="mt-4 p-3 bg-gray-800 rounded-lg">
+              <p class="text-xs">
+                <span class="text-green-400">Horaires:</span> Lun-Ven 8h-20h, Sam 9h-18h
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="border-t border-gray-800">
+        <div class="container mx-auto px-4 py-6">
+          <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+            <p>© 2025 AgroFresh. Tous droits réservés.</p>
+            <div class="flex gap-6">
+              <a href="{% url 'privacy' %}" class="hover:text-green-400 transition-colors">
+                Politique de confidentialité
+              </a>
+              <a href="{% url 'terms' %}" class="hover:text-green-400 transition-colors">
+                Mentions légales
+              </a>
+              <a href="#" class="hover:text-green-400 transition-colors">
+                Cookies
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

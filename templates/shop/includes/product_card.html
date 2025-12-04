@@ -1,0 +1,74 @@
+<div class="group hover:shadow-xl transition-all duration-300 overflow-hidden cursor-pointer rounded-xl border" >
+    <div class="p-0">
+        <!-- Image Container -->
+        <div class="relative overflow-hidden bg-gray-50">
+            <a href="{% url 'shop:product_detail' pk=product.id %}">
+            {% if product.product_image %}
+                {% if product.product_image.url %}
+                    <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                {% else %}
+                    <img src="{{ product.product_image }}" alt="{{ product.name }}" class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300">
+                {% endif %}
+            {% else %}
+                <div class="w-full h-64 bg-gray-200 flex items-center justify-center">
+                    <span class="text-gray-500">No image</span>
+                </div>
+            {% endif %}
+            </a>
+            <!-- Badges -->
+            <div class="absolute top-3 left-3 flex flex-col gap-2">
+                {% if product.badge %}
+                <span class="bg-green-600 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full">{{ product.badge }}</span>
+                {% endif %}
+            </div>
+
+          <!-- Favorite Button -->
+          <button
+            class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity bg-white hover:bg-red-50 hover:text-red-600 p-2 rounded-full"
+          >
+            <i data-lucide="heart" class="h-4 w-4"></i>
+          </button>
+
+          <!-- Stock Status -->
+          {% if not product.stock %}
+            <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+                <span class="text-white text-lg font-semibold">Rupture de stock</span>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Content -->
+        <div class="p-4">
+          <!-- Rating -->
+          <div class="flex items-center gap-1 mb-2">
+            <div class="flex items-center">
+                {% for i in "12345" %}
+                    <i data-lucide="star" class="h-4 w-4 text-yellow-400 fill-current"></i>
+                {% endfor %}
+            </div>
+            <span class="text-sm text-gray-500 ml-1">(5.0)</span>
+          </div>
+
+          <!-- Name & Description -->
+          <h3 class="text-gray-900 mb-1 line-clamp-1">{{ product.name }}</h3>
+          <p class="text-sm text-gray-500 mb-3 line-clamp-2">
+              {{ product.description }}
+          </p>
+
+          <!-- Price -->
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-2xl text-green-600">{{ product.price }} FCFA</span>
+            <span class="text-sm text-gray-500">/ Kg</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 pt-0">
+        <a href="{% url 'shop:add_to_cart' product_id=product.id %}"
+          class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md flex items-center justify-center {% if not product.stock %}disabled pointer-events-none bg-gray-400{% endif %}"
+        >
+          <i data-lucide="shopping-cart" class="h-4 w-4 mr-2"></i>
+          Ajouter au panier
+        </a>
+      </div>
+</div>

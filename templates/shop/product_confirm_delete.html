@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg text-center">
+        <h2 class="text-2xl font-bold mb-6 text-gray-800">Are you sure you want to delete "{{ product.name }}"?</h2>
+        <p class="text-gray-600 mb-6">This action cannot be undone. This will permanently delete the product.</p>
+        <form method="post" class="flex justify-center space-x-4">
+            {% csrf_token %}
+            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white py-2 px-6 rounded-md">
+                Confirm Delete
+            </button>
+            <a href="{% url 'shop:product_detail' pk=product.pk %}" class="bg-gray-300 hover:bg-gray-400 text-gray-800 py-2 px-6 rounded-md">
+                Cancel
+            </a>
+        </form>
+    </div>
+</div>
+{% endblock %}

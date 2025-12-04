@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    {% if product %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            {% if product.product_image %}
+                <img src="{{ product.product_image.url }}" class="w-full rounded-lg shadow-lg" alt="{{ product.name }}">
+            {% else %}
+                <div class="w-full h-full bg-gray-200 flex items-center justify-center rounded-lg shadow-lg">
+                    <span class="text-gray-500">Image non disponible</span>
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            <h1 class="text-4xl font-bold text-gray-900">{{ product.name }}</h1>
+            <p class="mt-4 text-lg text-gray-600">{{ product.description }}</p>
+            <div class="mt-4">
+                <span class="text-3xl font-bold text-green-600">{{ product.price }} FCFA</span>
+            </div>
+            <div class="mt-4">
+                <span class="text-gray-600">En stock: {{ product.stock }}</span>
+            </div>
+            <div class="mt-8">
+                <a href="{% url 'shop:add_to_cart' product_id=product.id %}" class="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md flex items-center justify-center">
+                    <i data-lucide="shopping-cart" class="h-5 w-5 mr-2"></i>
+                    Ajouter au panier
+                </a>
+            </div>
+            {% if user.is_superuser %}
+            <div class="mt-4 flex space-x-2">
+                <a href="{% url 'shop:update_product' pk=product.pk %}" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 px-6 rounded-md flex items-center justify-center">
+                    <i data-lucide="edit" class="h-5 w-5 mr-2"></i>
+                    Modifier
+                </a>
+                <a href="{% url 'shop:delete_product' pk=product.pk %}" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-3 px-6 rounded-md flex items-center justify-center">
+                    <i data-lucide="trash-2" class="h-5 w-5 mr-2"></i>
+                    Supprimer
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <p class="text-gray-500">Produit non trouvé.</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

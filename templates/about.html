@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}À propos - AgroFresh{% endblock %}
+
+{% block content %}
+<div class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-gray-900">À propos de nous</h1>
+        <p class="mt-2 text-lg text-gray-600">Apprenez-en plus sur notre mission, notre équipe et nos valeurs.</p>
+    </div>
+</div>
+
+<div class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-900">Notre Mission</h2>
+            <p class="mt-4 text-gray-600">Chez AgroFresh, notre mission est de connecter les consommateurs avec les meilleurs producteurs locaux. Nous croyons en une agriculture durable, une alimentation saine et une économie locale forte. Nous nous engageons à vous fournir des produits frais et de qualité, tout en soutenant les agriculteurs de votre région.</p>
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-gray-900">Notre Équipe</h2>
+            <p class="mt-4 text-gray-600">Nous sommes une équipe de passionnés de technologie et de gastronomie, unis par le désir de faire une différence. Notre objectif est de rendre les produits locaux accessibles à tous, en utilisant la technologie pour créer un lien direct entre les producteurs et vous.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

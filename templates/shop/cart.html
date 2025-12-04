@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-8">Votre Panier</h1>
+
+    {% if cart_items %}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+            <div class="space-y-4">
+                {% for item in cart_items %}
+                <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow">
+                    <div class="flex items-center gap-4">
+                        {% if item.product.product_image %}
+                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-20 h-20 object-cover rounded-md">
+                        {% endif %}
+                        <div>
+                            <h3 class="text-lg font-semibold">{{ item.product.name }}</h3>
+                            <p class="text-gray-600">{{ item.product.price }} FCFA</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2">
+                            <span>Quantité:</span>
+                            <input type="number" value="{{ item.quantity }}" min="1" class="w-16 border-gray-300 rounded-md text-center">
+                        </div>
+                        <a href="{% url 'shop:remove_from_cart' item.id %}" class="text-red-500 hover:text-red-700">
+                            <i data-lucide="trash-2" class="h-5 w-5"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="mt-8">
+                <a href="{% url 'shop:clear_cart' %}" class="text-red-500 hover:text-red-700">Vider le panier</a>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-2xl font-bold mb-4">Résumé</h2>
+            <div class="flex justify-between mb-2">
+                <span>Sous-total</span>
+                <span>{{ total_price }} FCFA</span>
+            </div>
+            <div class="flex justify-between mb-2">
+                <span>Livraison</span>
+                <span>Gratuite</span>
+            </div>
+            <hr class="my-4">
+            <div class="flex justify-between font-bold text-lg">
+                <span>Total</span>
+                <span>{{ total_price }} FCFA</span>
+            </div>
+            <button class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md">
+                Passer la commande
+            </button>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center py-16">
+        <i data-lucide="shopping-cart" class="h-16 w-16 mx-auto text-gray-400"></i>
+        <h2 class="mt-4 text-2xl font-semibold text-gray-900">Votre panier est vide</h2>
+        <p class="mt-2 text-gray-600">Parcourez nos produits pour trouver quelque chose que vous aimez.</p>
+        <a href="{% url 'shop:home' %}" class="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-md">
+            Continuer vos achats
+        </a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

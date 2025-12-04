@@ -1,0 +1,108 @@
+{% load static %}
+<header class="sticky top-0 z-50 bg-white border-b">
+      <!-- Top Bar -->
+      <div class="bg-green-600 text-white py-2">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+          <p class="text-sm">Livraison gratuite pour les commandes de plus de 30000 FCFA</p>
+          <div class="flex gap-4 text-sm">
+            <a href="{% url 'contact' %}" class="hover:underline">Contact</a>
+            <a href="{% url 'about' %}" class="hover:underline">À propos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Header -->
+      <div class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between gap-4">
+          <!-- Logo -->
+          <a href="{% url 'shop:home' %}" class="flex items-center gap-2">
+            <img src="{% static 'Logo.png' %}" alt="AgroFresh Logo" class="h-32">
+          </a>
+
+          <!-- Search Bar -->
+          <div class="hidden md:flex flex-1 max-w-2xl relative">
+            <input
+              type="text"
+              placeholder="Rechercher des produits frais..."
+              class="w-full pr-10 border-gray-300 rounded-md"
+            />
+            <button
+              class="absolute right-0 top-0 h-full px-3 bg-green-600 hover:bg-green-700 text-white rounded-r-md"
+            >
+              <i data-lucide="search" class="h-4 w-4"></i>
+            </button>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex items-center gap-2">
+            {% if user.is_staff %}
+            <a href="{% url 'shop:add_product' %}" class="hidden md:flex p-2 rounded-full hover:bg-gray-100" title="Ajouter un produit">
+              <i data-lucide="plus-circle" class="h-5 w-5"></i>
+            </a>
+            {% endif %}
+            <button class="hidden md:flex p-2 rounded-full hover:bg-gray-100">
+              <i data-lucide="heart" class="h-5 w-5"></i>
+            </button>
+            {% if user.is_authenticated %}
+              <form action="{% url 'accounts:logout' %}" method="post" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="p-2 rounded-full hover:bg-gray-100">
+                  <i data-lucide="log-out" class="h-5 w-5"></i>
+                </button>
+              </form>
+            {% else %}
+              <a href="{% url 'accounts:login' %}" class="p-2 rounded-full hover:bg-gray-100">
+                <i data-lucide="user" class="h-5 w-5"></i>
+              </a>
+            {% endif %}
+            <a href="{% url 'shop:cart' %}" class="relative p-2 rounded-full hover:bg-gray-100">
+              <i data-lucide="shopping-cart" class="h-5 w-5"></i>
+              {% if cart_item_count > 0 %}
+              <span class="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 bg-green-600 text-white rounded-full text-xs">
+                {{ cart_item_count }}
+              </span>
+              {% endif %}
+            </a>
+            <button class="md:hidden p-2 rounded-full hover:bg-gray-100">
+              <i data-lucide="menu" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Search -->
+        <div class="md:hidden mt-4 relative">
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            class="w-full pr-10 border-gray-300 rounded-md"
+          />
+          <button
+            class="absolute right-0 top-0 h-full px-3 bg-green-600 hover:bg-green-700 text-white rounded-r-md"
+          >
+              <i data-lucide="search" class="h-4 w-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="border-t hidden md:block">
+        <div class="container mx-auto px-4">
+          <ul class="flex gap-8 py-3">
+            <li>
+              <a href="{% url 'shop:home' %}" class="hover:text-green-600">
+                Accueil
+              </a>
+            </li>
+            {% for category in categories %}
+            {% if category.slug %}
+            <li>
+              <a href="{% url 'shop:category' category.slug %}" class="hover:text-green-600">
+                {{ category.name }}
+              </a>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </nav>
+    </header>
